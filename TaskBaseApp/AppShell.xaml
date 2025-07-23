@@ -6,16 +6,12 @@
     xmlns:local="clr-namespace:TaskBaseApp.Views"
     Title="TaskBaseApp">
 
-    <TabBar>
-        <ShellContent 
-            Title="Home"
-            ContentTemplate="{DataTemplate local:UserTasksPage}"
-            Icon="home.png"  
-            Route="TasksPage" />
-        <ShellContent 
-            Title="AddTasks"
-            ContentTemplate="{DataTemplate local:AddTaskPage}"
-            Icon="add.png"
-            Route="AddTaskPage" />
-    </TabBar>
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:LoginPage}"
+        Icon="home.png"
+        Route="TasksPage" />
+
+
 </Shell>
