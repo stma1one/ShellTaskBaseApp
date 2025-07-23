@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="TaskBaseApp.MyAppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TaskBaseApp.Views"
+    Title="TaskBaseApp">
+    <Shell.FlyoutHeader>
+        <StackLayout>
+            <Image Source="dotnet_bot.png" />
+        </StackLayout>
+
+    </Shell.FlyoutHeader>
+    <Shell.FlyoutFooter>
+
+        <StackLayout>
+            <Label Text="this is Tal Simon Design" />
+        </StackLayout>
+
+
+    </Shell.FlyoutFooter>
+
+
+    <FlyoutItem Title="Home" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:UserTasksPage}"
+            Icon="home.png"
+            Route="TasksPage" />
+    </FlyoutItem>
+
+    <MenuFlyoutSeparator Text="2עזרה בדרך" />
+    <ShellContent
+        Title="AddTasks"
+        ContentTemplate="{DataTemplate local:AddTaskPage}"
+        Icon="add.png"
+        Route="AddTaskPage" />
+
+    <MenuFlyoutSeparator Text="עזרה בדרך" />
+
+
+
+</Shell>
