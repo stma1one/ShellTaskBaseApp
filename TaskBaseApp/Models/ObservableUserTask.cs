@@ -16,7 +16,7 @@ namespace TaskBaseApp.Models
 		public event PropertyChangedEventHandler? PropertyChanged;
 
 
-		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
@@ -33,7 +33,7 @@ namespace TaskBaseApp.Models
 		}
 		
 		
-		public User User
+		public User? User
 		{
 			get => task.User;
 			set
