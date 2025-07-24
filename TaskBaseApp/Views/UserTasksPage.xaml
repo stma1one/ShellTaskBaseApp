@@ -7,6 +7,7 @@
     xmlns:viewmodels="clr-namespace:TaskBaseApp.ViewModels"
     Title="UserTasksPage"
     x:DataType="viewmodels:UserTasksPageViewModel">
+
     <Grid Margin="15" RowDefinitions=".1*,.9*,auto">
         <Border Stroke="Transparent">
             <HorizontalStackLayout>
@@ -32,7 +33,18 @@
             <CollectionView
                 x:Name="taskCollections"
                 ItemsSource="{Binding Tasks}"
-                SelectionMode="None">
+                SelectedItem="{Binding SelectedTask}"
+                SelectionChangedCommand="{Binding ShowDetailsPageCommand}"
+                
+                SelectionMode="Single">
+                <CollectionView.Header>
+                    <StackLayout>
+                        <Label FontSize="24" Text="זוהי כותרת" />
+                    </StackLayout>
+                </CollectionView.Header>
+                <CollectionView.Footer>
+                    <Label Text="כותרת תחתית" />
+                </CollectionView.Footer>
                 <!--  תצוגה ריקה  -->
                 <CollectionView.EmptyView>
                     <StackLayout

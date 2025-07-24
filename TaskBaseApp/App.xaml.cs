@@ -9,13 +9,14 @@ namespace TaskBaseApp
 		{
 			InitializeComponent();
 			// Initialize the first page of the application
-			this.firstpage =provider.GetService<UserTasksPage>();
+			this.firstpage =provider.GetService<LoginPage>();
 		}
 
 		protected override Window CreateWindow(IActivationState? activationState)
 		{
-			 //return new Window(new AppShell());
-			return new Window(firstpage!);
+			//return new Window(new MyAppShell());
+		 return new Window(new AppShell());
+		//	return new Window(firstpage!);
 		}
 	}
 }

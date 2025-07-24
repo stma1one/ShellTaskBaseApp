@@ -5,10 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:view="clr-namespace:TaskBaseApp.Views"
     xmlns:viewmodels="clr-namespace:TaskBaseApp.ViewModels"
-    Title="LoginPage"
+    Title="כניסה למערכת"
     x:DataType="viewmodels:LoginPageViewModel"
     FlowDirection="RightToLeft"
     IsBusy="{Binding IsBusy}">
+   
+
 
     <!--  רקע דף  -->
     <ContentPage.Background>

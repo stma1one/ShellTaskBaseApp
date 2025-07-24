@@ -9,6 +9,8 @@
     x:DataType="viewmodels:TaskDetailsPageViewModel"
     FlowDirection="RightToLeft">
 
+
+
     <!--  רקע הדף, מועתק מהדפים האחרים לשמירה על אחידות  -->
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">

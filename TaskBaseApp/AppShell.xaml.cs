@@ -7,7 +7,9 @@ namespace TaskBaseApp
         public AppShell()
         {
             InitializeComponent();
+            //רישום של דפים פנימיים
             Routing.RegisterRoute("TaskDetailsPage",typeof(TaskDetailsPage));
+            Routing.RegisterRoute("UserProfilePage", typeof(UserProfilePage));
 		}
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using TaskBaseApp.Models;
-using System.ComponentModel; // הוספנו לצורך INotifyPropertyChanged
+using System.ComponentModel;
 
 namespace TaskBaseApp.ViewModels
 {
@@ -14,7 +14,11 @@ namespace TaskBaseApp.ViewModels
 	/// מקבל אובייקט UserTask שלם דרך מנגנון הניווט של MAUI.
 	/// </summary>
 
-	public class TaskDetailsPageViewModel : ViewModelBase
+	//[QueryProperty(nameof(CommentsTitle),"desc")]
+	//[QueryProperty(nameof(Id),"id")]
+	[QueryProperty(nameof(SelectedTask), "selectedTask")]
+	public class TaskDetailsPageViewModel :ViewModelBase 
+
 	{
 		#region שדות
 		private UserTask? _selectedTask;
@@ -37,12 +41,15 @@ namespace TaskBaseApp.ViewModels
 				OnPropertyChanged(); // נודיע ל-UI שהמשימה התחלפה
 			}
 		}
-
+		public int Id
+		{
+			get; set;
+		}
 		/// <summary>
 		/// המאפיין שמקבל את אובייקט המשימה המלא מהניווט.
 		/// כאשר הוא מתעדכן, אנו מאתחלים את כל הדף.
 		/// </summary>
-		public UserTask? SelectedTask
+		public UserTask SelectedTask
 		{
 			get => _selectedTask;
 			set
@@ -52,6 +59,7 @@ namespace TaskBaseApp.ViewModels
 
 				// לאחר קבלת המשימה, נעדכן את מאפייני העזר
 				UpdateCommentStatus();
+				OnPropertyChanged();
 			}
 		}
 
@@ -110,6 +118,11 @@ namespace TaskBaseApp.ViewModels
 				CommentsTitle = "אין תגובות להצגה";
 			}
 		}
+
+		//public void ApplyQueryAttributes(IDictionary<string, object> query)
+		//{
+		//	CurrentTask = (UserTask)query["selectedTask"];
+		//}
 		#endregion
 	}
 }

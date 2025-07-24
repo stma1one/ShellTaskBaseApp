@@ -209,14 +209,17 @@ public class LoginPageViewModel : ViewModelBase
 			LoginMessage = AppMessages.LoginMessage;
 			MessageColor = Colors.Green;
 			// כאן ניתן להוסיף ניווט לדף הבא
+			Application.Current.Windows[0].Page = new AppShell();
 
 			
 		}
 		else
 		{
+			await Shell.Current.DisplayAlert("חיבור כושל", AppMessages.LoginErrorMessage, "אישור");
 			// במקרה של כישלון
-			LoginMessage = AppMessages.LoginErrorMessage;
-			MessageColor = Colors.Red;
+			//LoginMessage = AppMessages.LoginErrorMessage;
+
+			//MessageColor = Colors.Red;
 		}
 		IsBusy = false; // מסיים את מצב "עסוק"
 	}

@@ -17,7 +17,7 @@ public class UserTasksPageViewModel:ViewModelBase
 	ITaskServices _taskService;// Service for task management
 	List<UserTask> userTask=new(); // Represents a User task
 	Task loadData;// Represents a task for loading data
-
+	ObservableUserTask selectedTask;
 	ObservableCollection<ObservableUserTask> _allUserTasks=new(); // Collection of User tasks for binding to the UI
 	ObservableCollection<ObservableUserTask> _filteredUserTasks = new(); // Collection of completed User tasks for binding to the UI
 	bool _isLoading = false; // Indicates whether data is currently being loaded
@@ -28,6 +28,18 @@ public class UserTasksPageViewModel:ViewModelBase
 
 
 	#region Properties
+	public ObservableUserTask SelectedTask
+	{
+		get => selectedTask;
+		set
+		{
+			if (selectedTask != value)
+			{
+				selectedTask = value;
+				OnPropertyChanged();
+			}
+		}
+	}
 	public ObservableCollection<ObservableUserTask> Tasks{get; set;} 
 	public bool IsLoading{
 		get => _isLoading;
@@ -110,6 +122,7 @@ public class UserTasksPageViewModel:ViewModelBase
 	{
 		get;
 	}
+	
 	#endregion
 	#region Constructor
 	public UserTasksPageViewModel(ITaskServices services)
@@ -124,12 +137,25 @@ public class UserTasksPageViewModel:ViewModelBase
 		ClearFilterCommand = new Command(async () => await FilterTasks(string.Empty),()=>string.IsNullOrEmpty(SearchText)&&!IsLoading);
 		ChangeTaskDescriptionCommand = new Command(() => { if (Tasks.Count > 0) { Tasks[0].TaskDescription = "וואחד שינוי"; } });
 		DeleteTaskCommand = new Command<ObservableUserTask>(DeleteTask);
-		ShowDetailsPageCommand = new Command<ObservableUserTask>((t) => throw new NotImplementedException());
+		ShowDetailsPageCommand = new Command(async () => await ShowDetails());
 		loadData =LoadUserTasksAsync();
+		SelectedTask = null;
 	}
+
+	
 	#endregion
 
 	#region Methods
+	private async Task ShowDetails()
+	{
+		//שליחת פרמטר פשוט
+		//	await Shell.Current.GoToAsync(@$"TaskDetailsPage?id={SelectedTask.TaskId}&desc={SelectedTask.TaskDescription}");
+		Dictionary<string, object> param = new Dictionary<string, object>();
+		param.Add("selectedTask",SelectedTask.ToUserTask());
+		await Shell.Current.GoToAsync("TaskDetailsPage", param);
+
+
+	}
 	private async Task FilterTasks(string query)
 	{
 		IsLoading = true;
@@ -182,6 +208,7 @@ public class UserTasksPageViewModel:ViewModelBase
 			await Task.Delay(500);
 			IsLoading = false;
 			HasError = false;
+			
 		}
 		catch (Exception ex)
 		{
