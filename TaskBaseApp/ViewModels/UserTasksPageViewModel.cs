@@ -156,6 +156,7 @@ public class UserTasksPageViewModel:ViewModelBase
 
 
 	}
+	/// <summary>
 	private async Task FilterTasks(string query)
 	{
 		IsLoading = true;
